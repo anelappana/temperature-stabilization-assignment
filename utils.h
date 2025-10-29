@@ -1,16 +1,14 @@
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h> 
-#include <sys/socket.h>
-#include <arpa/inet.h>
+#ifndef UTILS_H
+#define UTILS_H
+#include <stdbool.h>
 
+struct msg {
+    int   Index;
+    float T;
+    bool  done;   // central sets this true to tell clients to stop
+};
 
-struct msg{
-    float T;     // Temperature 
-    int Index;    // Index indifying the process 
-}; 
+// keep your function name; add 'done' (clients send false; server sets true)
+struct msg prepare_message(int Index, float T, bool done);
 
-struct msg prepare_message(int i_Index, float i_Temperature); 
-
+#endif
